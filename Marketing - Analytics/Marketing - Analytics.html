@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <!--links externos bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <!--link externo de fontes e img icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+  <style>
+
+    /* a altura do grid que ser o valor total do .sidenav */
+    .row.content {height: 980px}
+    
+    /* cor de fundo e altura do sidenav*/
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+        
+    /* depois de 767px a altura sera automatica */
+    @media screen and (max-width: 767px) {
+      .row.content {height: auto;}
+        
+        
+    }
+  </style>
+    
+    
+<!--link de script para de carregamento google charts-->
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
+    <!--script google charts-->
+        <script type="text/javascript">
+   
+            
+//Carrega os graficos e o pacote corecharts
+google.charts.load('current', {'packages':['corechart']});
+ // Carrega os graficos e o pacote bar           
+google.charts.load('current', {'packages':['bar']});
+           
+//Chama as funçãos       
+google.charts.setOnLoadCallback(pieChart);
+            
+google.charts.setOnLoadCallback(dataChart);
+            
+google.charts.setOnLoadCallback(comChart);
+            
+google.charts.setOnLoadCallback(lineChart);
+
+// Função que retorna o desenho do grafico
+function pieChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Task', 'Hours per Day'],
+  ['Work', 8],
+  ['Friends', 2],
+  ['Eat', 2],
+  ['TV', 3],
+  ['Gym', 2],
+  ['Sleep', 7]
+]);
+
+  // titulo
+  var options = {'title':'My Average Day', 'width':400, 'height':300};
+
+  // instancia um chart para ser mostrando dentro de uma div
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+            
+// Função que retorna o desenho do grafico
+function dataChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses'],
+          ['2013',  1000,      400],
+          ['2014',  1170,      460],
+          ['2015',  660,       1120],
+          ['2016',  1030,      540]
+        ]);
+
+        var options = {
+          title: 'Company Performance',
+          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+    
+        // instancia um chart para ser mostrando dentro de uma div
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+            
+            
+            // Função que retorna o desenho do grafico
+function comChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses', 'Profit'],
+          ['2014', 1000, 400, 200],
+          ['2015', 1170, 460, 250],
+          ['2016', 660, 1120, 300],
+          ['2017', 1030, 540, 350]
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Company Performance',
+            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+          }
+        };
+        // instancia um chart para ser mostrando dentro de uma div
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+            
+// Função que retorna o desenho do grafico
+            function lineChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses'],
+          ['2004',  1000,      400],
+          ['2005',  1170,      460],
+          ['2006',  660,       1120],
+          ['2007',  1030,      540]
+        ]);
+
+        var options = {
+          title: 'Company Performance',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+                
+        // instancia um chart para ser mostrando dentro de uma div
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+            }
+            
+            
+</script> <!--fim do script chart-->
+    
+</head>
+    
+    
+<body>
+    
+    
+<!--este e o navbar que sustitui o sidebar depois da largura max de 767px -->
+        <nav class="navbar navbar-inverse visible-xs">
+              <div class="container-fluid">
+                    <div class="navbar-header">
+                          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>                        
+                          </button>
+                      <a class="navbar-brand" href="#">LogoINVISIVEL</a>
+                    </div>
+
+
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                      <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Dashboard</a></li>
+                        <li><a href="#">Age</a></li>
+                        <li><a href="#">Gender</a></li>
+                        <li><a href="#">Geo</a></li>
+                      </ul>
+                    </div>
+              </div>
+        </nav><!--fim da navbar que sustitui a sidebar-->
+
+    <!--CONT-FLUID que abraça todos os conteudos-->
+<div class="container-fluid">
+    
+    <!--ROW PRINCIPAL que abraça todas-->
+  <div class="row content" >
+      
+      <!--SIDEBAR-->
+      <!--se esconde em xs-->
+      <!--tambem define que ocupa coluna 3 em sm-->
+      
+            <div class="col-sm-2 sidenav hidden-xs" >
+         
+                    <!--depois atribui uma caracteristica para a sidenav-->
+                  <ul class="nav nav-pills nav-stacked">
+                    
+                    <li class="active"><a href="#section1">HOME</a></li>
+                    <li><a href="#section2">MARKETING</a></li>
+                    <li><a href="#section3">INTEGRAÇÃO</a></li>
+                    <li><a href="#section3">SUPORTE</a></li>
+                  </ul><br>
+            </div><!--fim SIDEBAR-->
+     
+    
+      <!--COL-SM-9  sm que abraça estrutura central panel e navbar-->
+    <div class="col-sm-9">
+        
+        
+            <!--NAVBAR TOPO-->
+        
+        <div class="row">
+            <nav class="navbar navbar-default" >
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Marketing - Analytics</a>
+                    </div>
+                    <!--elementos da direito do navbar-->
+                    <ul class="nav navbar-nav navbar-right">
+                          <li><a href="#"><span class="glyphicon glyphicon-user"></span></a></li>
+
+                         <!--dropdown-->
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-              toggle="dropdown">Olá, Roberto Zimmerman <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/user/preferences"><i class="icon-cog"></i> Preferences</a></li>
+                                    <li><a href="/help/support"><i class="icon-envelope"></i> Contact Support</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="/auth/logout"><i class="icon-off"></i> Logout</a></li>
+                                </ul>
+                            </li> <!--fim do dropdown-->
+                    </ul>
+                </div>
+            </nav><!--fim NAVBAR TOPO-->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!--NAVBAR FILTRO-->
+        <div class="row">
+                <div class="navbar navbar-default">
+                    <h4 style="float: left; padding-right: 30px; margin-left: 30px">FILTROS</h4>
+            <!-- dropdown button -->
+                    <div class="btn-group" style="padding-right: 30px">
+                        <h4>Grupo</h4>
+                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                              
+                            Selecione <span class="caret"></span>
+                          </button>
+                        
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">grupoX</a></li>
+                            <li><a href="#">groupoY</a></li>
+                            <li><a href="#">groupoZ</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Outro grupo</a></li>
+                          </ul>
+                        
+                    </div>
+            <!-- dropdown button -->
+                    <div class="btn-group" style="padding-right: 30px">
+                        <h4>Empresas</h4>
+                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                Selecione <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">empresaX</a></li>
+                                <li><a href="#">empresaY</a></li>
+                                <li><a href="#">empresaZ</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Outra empresa</a></li>
+                          </ul>
+                    </div>
+                       <button class="button button1" style="padding-right: 30px">APLICAR</button>     
+                        <button class="button button1">Exportar para PDF <i class="fa fa-file-pdf-o"></i></button>   
+                </div>
+        </div><!--fim do NAVBAR FILTRO-->
+
+        
+        
+    <!--PANEL row1-->
+          <div class="row">
+            
+              <div class="col-sm-6">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 style="text-align: center">Visão geral do Analytics</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div id="piechart" ></div>
+                    </div>
+                </div> 
+            </div>
+              
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 style="text-align: center">Quando os usuários visitam seu site?</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div id="chart_div" style="height: 300px" ></div>
+                    </div>
+                </div>  
+            </div>
+              
+          </div><!--fim do PANEL row1-->
+        
+    <!--PANEL row2-->
+          <div class="row">
+            
+              <div class="col-sm-6">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 style="text-align: center">Onde estão seus usuários?</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div id="columnchart_material" style="height: 300px;"></div>
+                    </div>
+                </div> 
+            </div>
+              
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 style="text-align: center">Origens de tráfego</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div id="curve_chart" style="height: 300px"></div>
+                    </div>
+                </div>  
+            </div>
+              
+          </div><!--fim do PANEL row2-->
+        
+    </div><!--fim da COL-SM-9-->
+      
+      
+      <!--SIDEBAR direita-->
+      <div class="col-sm-1 sidenav">         
+        </div>
+      
+      
+  </div><!--fim ROW PRINCIPAL-->
+</div><!--fim CONT-FLUID-->
+
+</body>
+</html>
